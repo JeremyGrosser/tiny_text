@@ -31,8 +31,7 @@ project Tiny_Text is
       when "enabled" =>
          Compile_Checks_Switches :=
            ("-gnatwa",  -- All warnings
-            "-gnatVa",  -- All validity checks
-            "-gnatwe"); -- Warnings as errors
+            "-gnatVa");  -- All validity checks
       when others => null;
    end case;
 
@@ -48,9 +47,7 @@ project Tiny_Text is
    case Style_Checks is
       when "enabled" => null;
          Style_Checks_Switches :=
-           ("-gnatyg",   -- GNAT Style checks
-            "-gnaty-d",  -- Disable no DOS line terminators
-            "-gnatyM80", -- Maximum line length
+           ("-gnaty-d",  -- Disable no DOS line terminators
             "-gnatyO");  -- Overriding subprograms explicitly marked as such
       when others => null;
    end case;
