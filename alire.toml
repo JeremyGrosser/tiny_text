@@ -1,0 +1,10 @@
+name = "tiny_text"
+description = "Low resolution bitmap font with a small memory footprint"
+version = "1.0.0"
+
+authors = ["Jeremy Grosser"]
+maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
+maintainers-logins = ["JeremyGrosser"]
+
+[[depends-on]]  # This line was added by `alr with`
+hal = "*"  # This line was added by `alr with`

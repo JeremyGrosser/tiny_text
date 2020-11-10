@@ -1,0 +1,39 @@
+# THIS IS A MACHINE-GENERATED FILE. DO NOT EDIT MANUALLY.
+
+[solution]
+[solution.context]
+solved = true
+[[solution.state]]
+crate = "hal"
+fulfilment = "solved"
+pinned = false
+transitivity = "direct"
+versions = "*"
+[solution.state.release]
+description = "Hardware Abstraction Layer (HAL)"
+licenses = [
+"BSD 3-Clauses",
+]
+long-description = "\n# hal\nHardware Abstraction Layer: interfaces definitions to abstract access to common\nhardware devices and protocols\n\nThis crate is a snapshot of the `hal` in [Ada Drivers\nLibrary](https://github.com/AdaCore/Ada_Drivers_Library/tree/master/hal/src).\nAny bug report, issue, contribution must be adressed to the [Ada Drivers\nLibrary](https://github.com/AdaCore/Ada_Drivers_Library/) repo.\n"
+maintainers = [
+"chouteau@adacore.com",
+]
+maintainers-logins = [
+"Fabien-Chouteau",
+]
+name = "hal"
+project-files = [
+"hal.gpr",
+]
+tags = [
+"embedded",
+"hal",
+"nostd",
+]
+version = "0.1.0"
+[solution.state.release.origin]
+hashes = [
+"sha512:f22ec626e93488cd832f3769bdb221f1375fb1ca9eeafca53e8078e2a980865807297efcc7738099617fa011bbebbf4c79569dbda3092f38cbbc0f9c42c6a68e",
+]
+url = "https://github.com/Fabien-Chouteau/hal/releases/download/v0.1.0/hal-0.1.0.zip"
+
