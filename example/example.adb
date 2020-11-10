@@ -12,8 +12,8 @@ begin
    Text.Initialize;
 
    loop
-      Text.Clear;
       Text.Put_Line ("Hello, world");
       Display.Update_Layers;
+      delay 0.5;
    end loop;
 end Example;
