@@ -2,7 +2,6 @@
 --  Copyright 2020 Jeremy Grosser
 --  See LICENSE for details
 
-with Ada.Characters.Latin_1; use Ada.Characters.Latin_1;
 with HAL.Bitmap; use HAL.Bitmap;
 with HAL;
 
@@ -109,7 +108,6 @@ package Tiny_Text is
       '|' => 2#010_010_000_010_010_000#,
       '}' => 2#110_010_001_010_110_000#,
       '~' => 2#011_110_000_000_000_000#,
-      Degree_Sign => 2#010_101_010_000_000_000#,
       others => 2#111_101_101_101_111_000#);
 
     type Text_Buffer
