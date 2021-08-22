@@ -31,6 +31,7 @@ project Tiny_Text is
       when "enabled" =>
          Compile_Checks_Switches :=
            ("-gnatwa",  -- All warnings
+            "-gnatw.X",
             "-gnatVa");  -- All validity checks
       when others => null;
    end case;

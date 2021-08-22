@@ -6,8 +6,14 @@ with Interfaces; use Interfaces;
 
 package body Tiny_Text is
     procedure Initialize
-       (This : in out Text_Buffer) is
+       (This   : in out Text_Buffer;
+        Bitmap : Any_Bitmap_Buffer;
+        Width  : Natural;
+        Height : Natural) is
     begin
+       This.Width := Width;
+       This.Height := Height;
+       This.Bitmap := Bitmap;
        This.Default_Cursor := (This.Width - Font_Width - 1, 0);
        This.Clear;
     end Initialize;
@@ -39,10 +45,10 @@ package body Tiny_Text is
 
     procedure Put
         (This       : in out Text_Buffer;
-         Location   : in Point;
-         Char       : in Character;
-         Foreground : in Bitmap_Color;
-         Background : in Bitmap_Color) is
+         Location   : Point;
+         Char       : Character;
+         Foreground : Bitmap_Color;
+         Background : Bitmap_Color) is
         P : Point;
         FC : constant Unsigned_32 := Unsigned_32 (Font_Data (Char));
         Pixel : Unsigned_32;
@@ -63,7 +69,7 @@ package body Tiny_Text is
 
     procedure Put
        (This : in out Text_Buffer;
-        Char : in Character) is
+        Char : Character) is
     begin
        if Char = ASCII.LF then
           This.New_Line;
@@ -75,7 +81,7 @@ package body Tiny_Text is
 
     procedure Put
        (This : in out Text_Buffer;
-        Str  : in String) is
+        Str  : String) is
     begin
        for Char of Str loop
           This.Put (Char);
@@ -84,7 +90,7 @@ package body Tiny_Text is
 
     procedure Put_Line
        (This : in out Text_Buffer;
-        Str  : in String) is
+        Str  : String) is
     begin
        This.Put (Str);
        This.Put (ASCII.LF);

@@ -110,12 +110,19 @@ package Tiny_Text is
       '~' => 2#011_110_000_000_000_000#,
       others => 2#111_101_101_101_111_000#);
 
-    type Text_Buffer
-       (Bitmap        : Any_Bitmap_Buffer;
-        Width, Height : Natural) is tagged private;
+    type Text_Buffer is tagged record
+       Width, Height  : Natural;
+       Bitmap         : Any_Bitmap_Buffer;
+       Default_Cursor : Point;
+       Cursor         : Point;
+    end record;
 
     procedure Initialize
-       (This : in out Text_Buffer);
+       (This   : in out Text_Buffer;
+        Bitmap : Any_Bitmap_Buffer;
+        Width  : Natural;
+        Height : Natural);
+
     procedure Clear
        (This : in out Text_Buffer);
     procedure Advance
@@ -124,26 +131,17 @@ package Tiny_Text is
        (This : in out Text_Buffer);
     procedure Put
         (This       : in out Text_Buffer;
-         Location   : in Point;
-         Char       : in Character;
-         Foreground : in Bitmap_Color;
-         Background : in Bitmap_Color);
+         Location   : Point;
+         Char       : Character;
+         Foreground : Bitmap_Color;
+         Background : Bitmap_Color);
     procedure Put
        (This : in out Text_Buffer;
-        Char : in Character);
+        Char : Character);
     procedure Put
        (This : in out Text_Buffer;
-        Str  : in String);
+        Str  : String);
     procedure Put_Line
        (This : in out Text_Buffer;
-        Str  : in String);
-
-private
-    type Text_Buffer
-       (Bitmap        : Any_Bitmap_Buffer;
-        Width, Height : Natural)
-    is tagged record
-       Default_Cursor : Point;
-       Cursor : Point;
-    end record;
+        Str  : String);
 end Tiny_Text;
