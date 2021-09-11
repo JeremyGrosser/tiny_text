@@ -23,6 +23,7 @@ package body Tiny_Text is
         This.Bitmap.Set_Source (White);
         This.Bitmap.Fill;
         This.Cursor := This.Default_Cursor;
+        This.Bitmap.Set_Source (Black);
     end Clear;
 
     procedure New_Line (This : in out Text_Buffer) is
