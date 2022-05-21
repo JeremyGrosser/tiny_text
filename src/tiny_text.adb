@@ -14,7 +14,7 @@ package body Tiny_Text is
        This.Width := Width;
        This.Height := Height;
        This.Bitmap := Bitmap;
-       This.Default_Cursor := (This.Width - Font_Width - 1, 0);
+       This.Default_Cursor := (0, 0);
        This.Clear;
     end Initialize;
 
@@ -28,9 +28,9 @@ package body Tiny_Text is
 
     procedure New_Line (This : in out Text_Buffer) is
     begin
-         This.Cursor.X := This.Width - Font_Width - 1;
+         This.Cursor.X := 0;
          This.Cursor.Y := This.Cursor.Y + Font_Height + 1;
-         if This.Cursor.Y >= This.Height then
+         if (This.Cursor.Y + Font_Height) >= This.Height then
              This.Cursor.Y := 0;
              This.Clear;
          end if;
@@ -38,8 +38,8 @@ package body Tiny_Text is
 
     procedure Advance (This : in out Text_Buffer) is
     begin
-        This.Cursor.X := This.Cursor.X - Font_Width - 1;
-        if This.Cursor.X = 0 then
+        This.Cursor.X := This.Cursor.X + Font_Width + 1;
+        if This.Cursor.X >= This.Width then
            This.New_Line;
         end if;
     end Advance;
@@ -56,8 +56,8 @@ package body Tiny_Text is
     begin
         for X in 0 .. (Font_Width - 1) loop
             for Y in 0 .. (Font_Height - 1) loop
-                P.X := Location.X + X;
-                P.Y := Location.Y + Y;
+                P.X := (Location.X + (Font_Width - X));
+                P.Y := (Location.Y + Y);
                 Pixel := Shift_Right (FC, (Font_Width * Font_Height) - (Y * 3) + X) and 1;
                 if Pixel = 1 then
                     This.Bitmap.Set_Pixel (P, Foreground);
