@@ -20,10 +20,10 @@ package body Tiny_Text is
 
     procedure Clear (This : in out Text_Buffer) is
     begin
-        This.Bitmap.Set_Source (White);
+        This.Bitmap.Set_Source (This.Background);
         This.Bitmap.Fill;
         This.Cursor := This.Default_Cursor;
-        This.Bitmap.Set_Source (Black);
+        This.Bitmap.Set_Source (This.Foreground);
     end Clear;
 
     procedure New_Line (This : in out Text_Buffer) is
@@ -75,7 +75,7 @@ package body Tiny_Text is
        if Char = ASCII.LF then
           This.New_Line;
        else
-          This.Put (This.Cursor, Char, Black, White);
+          This.Put (This.Cursor, Char, This.Foreground, This.Background);
           This.Advance;
        end if;
     end Put;

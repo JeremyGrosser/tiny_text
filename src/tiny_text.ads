@@ -111,10 +111,13 @@ package Tiny_Text is
       others => 2#111_101_101_101_111_000#);
 
     type Text_Buffer is tagged record
-       Width, Height  : Natural;
-       Bitmap         : Any_Bitmap_Buffer;
-       Default_Cursor : Point;
-       Cursor         : Point;
+       Width          : Natural := 0;
+       Height         : Natural := 0;
+       Bitmap         : Any_Bitmap_Buffer := null;
+       Default_Cursor : Point := (0, 0);
+       Cursor         : Point := (0, 0);
+       Foreground     : Bitmap_Color := White;
+       Background     : Bitmap_Color := Black;
     end record;
 
     procedure Initialize
