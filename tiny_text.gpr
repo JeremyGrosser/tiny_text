@@ -1,14 +1,11 @@
--- begin auto-gpr-with --
---  This section was automatically added by Alire
-with "hal.gpr";
--- end auto-gpr-with --
+with "config/tiny_text_config.gpr";
 project Tiny_Text is
 
    for Library_Name use "Tiny_Text";
-   for Library_Version use "1.0.0";
+   for Library_Version use Project'Library_Name & ".so." & Tiny_Text_Config.Crate_Version;
 
-   for Source_Dirs use ("src");
-   for Object_Dir use "obj";
+   for Source_Dirs use ("src/", "config/");
+   for Object_Dir use "obj/" & Tiny_Text_Config.Build_Profile;
    for Create_Missing_Dirs use "True";
    for Library_Dir use "lib";
 
@@ -17,72 +14,16 @@ project Tiny_Text is
      external ("TINY_TEXT_LIBRARY_TYPE", external ("LIBRARY_TYPE", "static"));
    for Library_Kind use Library_Type;
 
-   type Enabled_Kind is ("enabled", "disabled");
-   Compile_Checks : Enabled_Kind := External ("TINY_TEXT_COMPILE_CHECKS", "enabled");
-   Runtime_Checks : Enabled_Kind := External ("TINY_TEXT_RUNTIME_CHECKS", "enabled");
-   Style_Checks : Enabled_Kind := External ("TINY_TEXT_STYLE_CHECKS", "enabled");
-   Contracts_Checks : Enabled_Kind := External ("TINY_TEXT_CONTRACTS", "enabled");
-
-   type Build_Kind is ("debug", "optimize");
-   Build_Mode : Build_Kind := External ("TINY_TEXT_BUILD_MODE", "debug");
-
-   Compile_Checks_Switches := ();
-   case Compile_Checks is
-      when "enabled" =>
-         Compile_Checks_Switches :=
-           ("-gnatwa",  -- All warnings
-            "-gnatw.X",
-            "-gnatVa");  -- All validity checks
-      when others => null;
-   end case;
-
-   Runtime_Checks_Switches := ();
-   case Runtime_Checks is
-      when "enabled" => null;
-      when others =>
-         Runtime_Checks_Switches :=
-           ("-gnatp"); -- Supress checks
-   end case;
-
-   Style_Checks_Switches := ();
-   case Style_Checks is
-      when "enabled" => null;
-         Style_Checks_Switches :=
-           ("-gnaty-d",  -- Disable no DOS line terminators
-            "-gnatyO");  -- Overriding subprograms explicitly marked as such
-      when others => null;
-   end case;
-
-   Contracts_Switches := ();
-   case Contracts_Checks is
-      when "enabled" => null;
-         Contracts_Switches :=
-           ("-gnata"); --  Enable assertions and contracts
-      when others =>
-   end case;
-
-   Build_Switches := ();
-   case Build_Mode is
-      when "optimize" =>
-         Build_Switches := ("-O3",     -- Optimization
-                            "-gnatn"); -- Enable inlining
-      when "debug" =>
-         Build_Switches := ("-g",   -- Debug info
-                            "-Og"); -- No optimization
-   end case;
-
    package Compiler is
-      for Default_Switches ("Ada") use
-        Compile_Checks_Switches &
-        Build_Switches &
-        Runtime_Checks_Switches &
-        Style_Checks_Switches &
-        Contracts_Switches &
-        ("-gnatQ");  -- Don't quit. Generate ALI and tree files even if illegalities
+      for Default_Switches ("Ada") use Tiny_Text_Config.Ada_Compiler_Switches;
    end Compiler;
 
    package Binder is
       for Switches ("Ada") use ("-Es"); --  Symbolic traceback
    end Binder;
+
+   package Install is
+      for Artifacts (".") use ("share");
+   end Install;
 
 end Tiny_Text;

@@ -1,6 +1,6 @@
 name = "tiny_text"
 description = "Low resolution bitmap font with a small memory footprint"
-version = "1.1.0"
+version = "1.2.0"
 
 authors = ["Jeremy Grosser"]
 maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
@@ -9,5 +9,5 @@ licenses = "MIT"
 website = ["https://github.com/JeremyGrosser/tiny_text"]
 tags = ["font", "hal", "bitmap", "text"]
 
-[[depends-on]]  # This line was added by `alr with`
-hal = "*"  # This line was added by `alr with`
+[[depends-on]]
+hal = "~0.3.0"

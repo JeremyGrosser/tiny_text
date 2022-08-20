@@ -9,5 +9,5 @@ Tiny Text is a 5x3 bitmap font. This implementation supports drawing on any disp
 `example/example.adb` demonstrates using this font on a PCD8544 LCD. To build the example, use `Ada_Drivers_Library/scripts/project_wizard.py` to generate a project config for the STM32-H405 board and ravenscar-full-stm32f4 runtime.
 
 MIT License  
-Copyright 2020 Jeremy Grosser  
+Copyright 2020-2022 Jeremy Grosser  
 See LICENSE for details.  
