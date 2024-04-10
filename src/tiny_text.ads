@@ -118,13 +118,15 @@ package Tiny_Text is
       Cursor       : Point := (0, 0);
       Foreground    : Bitmap_Color := White;
       Background    : Bitmap_Color := Black;
+      Scale         : Positive := 1;
    end record;
 
    procedure Initialize
       (This   : in out Text_Buffer;
        Bitmap : Any_Bitmap_Buffer;
        Width  : Natural;
-       Height : Natural);
+       Height : Natural;
+       Scale  : Positive := 1);
 
    procedure Clear
       (This : in out Text_Buffer);
