@@ -1,0 +1,24 @@
+name = "test"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Jeremy Grosser"]
+maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
+maintainers-logins = ["JeremyGrosser"]
+licenses = "BSD-3-Clause"
+website = ""
+tags = []
+
+executables = ["test"]
+
+[[depends-on]]
+tiny_text = "^1.0.0"
+
+[[pins]]
+tiny_text = { path='..' }
+
+[[depends-on]]
+qoi = "~0.1.0"
+
+[[depends-on]]
+adl_middleware = "~0.2.0"
