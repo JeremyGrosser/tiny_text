@@ -3,7 +3,6 @@
 --
 --  SPDX-License-Identifier: MIT
 --
-pragma Style_Checks ("M120");
 with System.Storage_Elements;
 with Memory_Mapped_Bitmap;
 with HAL.Bitmap;
