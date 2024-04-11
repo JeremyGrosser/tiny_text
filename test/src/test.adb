@@ -6,6 +6,7 @@ with HAL.Bitmap;
 with QOI;
 
 with Tiny_Text;
+with Generic_Tiny_Text;
 
 with Ada.Streams.Stream_IO;
 with Ada.Directories;
@@ -17,8 +18,6 @@ procedure Test is
    package SSE renames System.Storage_Elements;
    use type SSE.Storage_Offset;
    use type SSE.Storage_Array;
-
-   Text : Tiny_Text.Text_Buffer;
 
    Width  : constant := 128;
    Height : constant := 32;
@@ -45,36 +44,84 @@ procedure Test is
       (Ada.Directories.Size (Verify_Filename));
    Verify : aliased SSE.Storage_Array (1 .. Verify_Length);
    File   : IO.File_Type;
+
+   procedure Check_Output
+      (Name : String)
+   is
+   begin
+      QOI.Encode
+         (Pix         => Buffer,
+          Desc        => Desc,
+          Output      => Output,
+          Output_Size => Output_Last);
+
+      if Ada.Directories.Exists (Output_Filename) then
+         Ada.Directories.Delete_File (Output_Filename);
+      end if;
+      IO.Create (File, IO.Out_File, Output_Filename);
+      SSE.Storage_Array'Write (IO.Stream (File), Output (1 .. Output_Last));
+      IO.Close (File);
+
+      Ada.Text_IO.Put (Name);
+      Ada.Text_IO.Put (' ');
+      if Output (1 .. Output_Last) = Verify then
+         Ada.Text_IO.Put_Line ("PASS");
+      else
+         Ada.Text_IO.Put_Line ("FAIL");
+         Ada.Command_Line.Set_Exit_Status (1);
+      end if;
+   end Check_Output;
+
+   procedure Test_HAL is
+      Text : Tiny_Text.Text_Buffer;
+   begin
+      Text.Initialize
+         (Bitmap  => Bitmap'Unrestricted_Access,
+          Width   => Width,
+          Height  => Height);
+      Text.Put_Line ("hello, tiny!");
+      Text.Scale := 2;
+      Text.Put ("hello, big!");
+
+      Check_Output ("Tiny_Text");
+   end Test_HAL;
+
+   procedure Test_Generic is
+      procedure Set_Pixel
+         (X, Y : Natural;
+          Set  : Boolean)
+      is
+      begin
+         if Set then
+            Bitmap.Set_Source (HAL.Bitmap.White);
+         else
+            Bitmap.Set_Source (HAL.Bitmap.Black);
+         end if;
+         Bitmap.Set_Pixel (HAL.Bitmap.Point'(X, Y));
+      end Set_Pixel;
+      package Text is new Generic_Tiny_Text
+         (Width     => Width,
+          Height    => Height,
+          Set_Pixel => Set_Pixel);
+   begin
+      Bitmap.Set_Source (HAL.Bitmap.Black);
+      Bitmap.Fill;
+
+      for Ch in Character'Range loop
+         Text.Put (Ch);
+      end loop;
+      Text.Clear;
+
+      Text.Put_Line ("hello, tiny!");
+      Text.Scale := 2;
+      Text.Put ("hello, big!");
+      Check_Output ("Generic_Tiny_Text");
+   end Test_Generic;
 begin
-   Text.Initialize
-      (Bitmap  => Bitmap'Unrestricted_Access,
-       Width   => Width,
-       Height  => Height);
-   Text.Put_Line ("hello, tiny!");
-   Text.Scale := 2;
-   Text.Put ("hello, big!");
-
-   QOI.Encode
-      (Pix         => Buffer,
-       Desc        => Desc,
-       Output      => Output,
-       Output_Size => Output_Last);
-
-   if Ada.Directories.Exists (Output_Filename) then
-      Ada.Directories.Delete_File (Output_Filename);
-   end if;
-   IO.Create (File, IO.Out_File, Output_Filename);
-   SSE.Storage_Array'Write (IO.Stream (File), Output (1 .. Output_Last));
-   IO.Close (File);
-
    IO.Open (File, IO.In_File, Verify_Filename);
    SSE.Storage_Array'Read (IO.Stream (File), Verify);
    IO.Close (File);
 
-   if Output (1 .. Output_Last) = Verify then
-      Ada.Text_IO.Put_Line ("PASS");
-   else
-      Ada.Text_IO.Put_Line ("FAIL");
-      Ada.Command_Line.Set_Exit_Status (1);
-   end if;
+   Test_HAL;
+   Test_Generic;
 end Test;
