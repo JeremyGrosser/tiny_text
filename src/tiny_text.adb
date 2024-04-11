@@ -1,7 +1,8 @@
---  Tiny Text
---  Copyright 2020 Jeremy Grosser
---  See LICENSE for details
-
+--
+--  Copyright (C) 2020-2024 Jeremy Grosser <jeremy@synack.me>
+--
+--  SPDX-License-Identifier: MIT
+--
 with Interfaces; use Interfaces;
 
 package body Tiny_Text is

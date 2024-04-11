@@ -1,3 +1,8 @@
+--
+--  Copyright (C) 2024 Jeremy Grosser <jeremy@synack.me>
+--
+--  SPDX-License-Identifier: MIT
+--
 with Interfaces; use Interfaces;
 
 package body Generic_Tiny_Text is

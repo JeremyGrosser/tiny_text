@@ -1,7 +1,8 @@
---  Tiny Text
---  Copyright 2020-2022 Jeremy Grosser
---  See LICENSE for details
-
+--
+--  Copyright (C) 2020-2024 Jeremy Grosser <jeremy@synack.me>
+--
+--  SPDX-License-Identifier: MIT
+--
 with HAL.Bitmap; use HAL.Bitmap;
 with HAL;
 

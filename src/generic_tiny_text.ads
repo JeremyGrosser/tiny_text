@@ -1,3 +1,8 @@
+--
+--  Copyright (C) 2024 Jeremy Grosser <jeremy@synack.me>
+--
+--  SPDX-License-Identifier: MIT
+--
 generic
    Width, Height : Positive;
    with procedure Set_Pixel (X, Y : Natural; Set : Boolean);

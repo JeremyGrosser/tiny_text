@@ -1,3 +1,8 @@
+--
+--  Copyright (C) 2024 Jeremy Grosser <jeremy@synack.me>
+--
+--  SPDX-License-Identifier: MIT
+--
 pragma Style_Checks ("M120");
 with System.Storage_Elements;
 with Memory_Mapped_Bitmap;
