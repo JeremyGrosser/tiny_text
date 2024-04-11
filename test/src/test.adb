@@ -39,6 +39,7 @@ procedure Test is
    Output      : aliased SSE.Storage_Array (1 .. QOI.Encode_Worst_Case (Desc));
    Output_Last : SSE.Storage_Offset;
 
+   Output_Filename : constant String := "output.qoi";
    Verify_Filename : constant String := "hello_tiny.qoi";
    Verify_Length : constant SSE.Storage_Offset := SSE.Storage_Offset
       (Ada.Directories.Size (Verify_Filename));
@@ -49,13 +50,22 @@ begin
       (Bitmap  => Bitmap'Unrestricted_Access,
        Width   => Width,
        Height  => Height);
-   Text.Put ("hello, tiny!");
+   Text.Put_Line ("hello, tiny!");
+   Text.Scale := 2;
+   Text.Put ("hello, big!");
 
    QOI.Encode
       (Pix         => Buffer,
        Desc        => Desc,
        Output      => Output,
        Output_Size => Output_Last);
+
+   if Ada.Directories.Exists (Output_Filename) then
+      Ada.Directories.Delete_File (Output_Filename);
+   end if;
+   IO.Create (File, IO.Out_File, Output_Filename);
+   SSE.Storage_Array'Write (IO.Stream (File), Output (1 .. Output_Last));
+   IO.Close (File);
 
    IO.Open (File, IO.In_File, Verify_Filename);
    SSE.Storage_Array'Read (IO.Stream (File), Verify);
