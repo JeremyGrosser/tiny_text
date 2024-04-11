@@ -18,3 +18,6 @@ adl_middleware = "~0.2.0"
 
 [[pins]]
 tiny_text = { path='..' }
+
+[build-switches]
+release.optimization = ["-gnatn2", "-gnatp", "-Os", "-march=native"]
