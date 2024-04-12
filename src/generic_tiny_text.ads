@@ -15,6 +15,8 @@ is
       X, Y : Natural := 0;
    end record;
 
+   subtype Printable is Character range ' ' .. '~';
+
    procedure Put
       (Pos : Point;
        Ch  : Character);
