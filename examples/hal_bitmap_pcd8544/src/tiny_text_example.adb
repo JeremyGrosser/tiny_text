@@ -15,12 +15,11 @@ with RP.SPI;
 with RP2040_SVD.SPI;
 
 procedure Tiny_Text_Example is
-   MOSI  : RP.GPIO.GPIO_Point := (Pin => 2);
-   MISO  : RP.GPIO.GPIO_Point := (Pin => 3);
-   SCK   : RP.GPIO.GPIO_Point := (Pin => 4);
-   DC    : aliased RP.GPIO.GPIO_Point := (Pin => 5);
-   RST   : aliased RP.GPIO.GPIO_Point := (Pin => 6);
-   CS    : aliased RP.GPIO.GPIO_Point := (Pin => 7);
+   RST   : aliased RP.GPIO.GPIO_Point := (Pin => 0);
+   CS    : aliased RP.GPIO.GPIO_Point := (Pin => 1);
+   DC    : aliased RP.GPIO.GPIO_Point := (Pin => 2);
+   MOSI  : aliased RP.GPIO.GPIO_Point := (Pin => 3);
+   SCK   : aliased RP.GPIO.GPIO_Point := (Pin => 6);
    Port  : aliased RP.SPI.SPI_Port
       (0, RP2040_SVD.SPI.SPI0_Periph'Access);
 
@@ -38,7 +37,6 @@ begin
    RP.Clock.Initialize (12_000_000);
 
    MOSI.Configure (RP.GPIO.Output, RP.GPIO.Floating, RP.GPIO.SPI);
-   MISO.Configure (RP.GPIO.Output, RP.GPIO.Floating, RP.GPIO.SPI);
    SCK.Configure (RP.GPIO.Output, RP.GPIO.Floating, RP.GPIO.SPI);
    DC.Configure (RP.GPIO.Output, RP.GPIO.Pull_Up);
    RST.Configure (RP.GPIO.Output, RP.GPIO.Pull_Up);
