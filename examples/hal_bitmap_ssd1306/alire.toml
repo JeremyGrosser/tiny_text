@@ -1,0 +1,22 @@
+name = "tiny_text_example"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Jeremy Grosser"]
+maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
+maintainers-logins = ["JeremyGrosser"]
+licenses = "MIT"
+website = ""
+tags = []
+
+executables = ["tiny_text_example"]
+
+[[depends-on]]
+adl_middleware = "~0.2.0"
+embedded_components = "~0.2.0"
+pico_bsp = "^2.0.0"
+tiny_text = "^1.3.0"
+
+[[pins]]
+tiny_text = { path='../..' }
+

@@ -111,6 +111,8 @@ package Tiny_Text is
      '~' => 2#011_110_000_000_000_000#,
      others => 2#111_101_101_101_111_000#);
 
+   subtype Printable is Character range ' ' .. '~';
+
    type Text_Buffer is tagged record
       Width        : Natural := 0;
       Height       : Natural := 0;

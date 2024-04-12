@@ -15,13 +15,18 @@ is
       X, Y : Natural := 0;
    end record;
 
+   subtype Printable is Character range ' ' .. '~';
+
    procedure Put
       (Pos : Point;
        Ch  : Character);
 
-   procedure Clear;
-
    Cursor : Point := (0, 0);
+
+   procedure Clear;
+   --  Resets Cursor to (0, 0) and calls Set_Pixel with Set => False for every
+   --  pixel on the screen. This is inefficient for most displays and should
+   --  only be used as a fallback.
 
    procedure Put
       (Ch : Character);
