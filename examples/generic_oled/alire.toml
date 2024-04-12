@@ -1,0 +1,22 @@
+name = "tiny_text_example"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Jeremy Grosser"]
+maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
+maintainers-logins = ["JeremyGrosser"]
+licenses = "MIT"
+website = ""
+tags = []
+
+executables = ["tiny_text_example"]
+
+[[depends-on]]
+rp2040_hal = "^2.2.1"
+tiny_text = "^1.3.0"
+
+[[pins]]
+tiny_text = { path='../..' }
+
+[build-switches]
+release.optimization = ["-gnatn2", "-gnatp", "-Os"]
