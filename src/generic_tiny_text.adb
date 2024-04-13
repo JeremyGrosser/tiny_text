@@ -124,7 +124,7 @@ package body Generic_Tiny_Text is
             if (Shift_Right (FC, (Font_Width * Font_Height) - (Y * 3) + X) and 1) = 1 then
                for RX in PX .. PX + Scale - 1 loop
                   for RY in PY .. PY + Scale - 1 loop
-                     Set_Pixel (RX, RY, True);
+                     Set_Pixel (RX, RY);
                   end loop;
                end loop;
             end if;
@@ -134,11 +134,6 @@ package body Generic_Tiny_Text is
 
    procedure Clear is
    begin
-      for Y in 0 .. Height - 1 loop
-         for X in 0 .. Width - 1 loop
-            Set_Pixel (X, Y, False);
-         end loop;
-      end loop;
       Cursor := (0, 0);
    end Clear;
 

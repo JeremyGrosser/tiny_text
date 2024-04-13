@@ -19,11 +19,10 @@ procedure Tiny_Text_Example is
       (0, 0, 0, 255);
 
    procedure Set_Pixel
-      (X, Y : Integer;
-       Set  : Boolean)
+      (X, Y : Integer)
    is
    begin
-      Raylib.DrawPixel (int (X), int (Y), (if Set then Foreground else Background));
+      Raylib.DrawPixel (int (X), int (Y), Foreground);
    end Set_Pixel;
 
    package Text is new Generic_Tiny_Text
@@ -40,7 +39,7 @@ begin
       Raylib.BeginDrawing;
       Raylib.ClearBackground (Background);
 
-      Text.Cursor := (0, 0);
+      Text.Clear;
       for Ch in Text.Printable'Range loop
          Text.Put (Ch);
       end loop;

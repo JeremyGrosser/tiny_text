@@ -91,16 +91,17 @@ procedure Test is
    end Test_HAL;
 
    procedure Test_Generic is
+      procedure Clear_Bitmap is
+      begin
+         Bitmap.Set_Source (HAL.Bitmap.Black);
+         Bitmap.Fill;
+         Bitmap.Set_Source (HAL.Bitmap.White);
+      end Clear_Bitmap;
+
       procedure Set_Pixel
-         (X, Y : Natural;
-          Set  : Boolean)
+         (X, Y : Natural)
       is
       begin
-         if Set then
-            Bitmap.Set_Source (HAL.Bitmap.White);
-         else
-            Bitmap.Set_Source (HAL.Bitmap.Black);
-         end if;
          Bitmap.Set_Pixel (HAL.Bitmap.Point'(X, Y));
       end Set_Pixel;
       package Text is new Generic_Tiny_Text
@@ -108,13 +109,13 @@ procedure Test is
           Height    => Height,
           Set_Pixel => Set_Pixel);
    begin
-      Bitmap.Set_Source (HAL.Bitmap.Black);
-      Bitmap.Fill;
-
+      Clear_Bitmap;
       for Ch in Character'Range loop
          Text.Put (Ch);
       end loop;
+
       Text.Clear;
+      Clear_Bitmap;
 
       Text.Put_Line ("hello, tiny!");
       Text.Scale := 2;
