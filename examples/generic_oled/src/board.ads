@@ -20,8 +20,11 @@ package Board is
    package Screen is new OLED
       (Write => OLED_Write);
 
+   procedure Set_Pixel
+      (X, Y : Natural);
+
    package Text is new Generic_Tiny_Text
-      (Set_Pixel  => Screen.Set_Pixel,
+      (Set_Pixel  => Set_Pixel,
        Width      => Screen.Width,
        Height     => Screen.Height);
 

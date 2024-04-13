@@ -10,7 +10,11 @@ begin
    Initialize;
 
    loop
-      Text.Put_Line ("hello world!");
+      Screen.Clear;
+      for Ch in Text.Printable'Range loop
+         Text.Put (Ch);
+         Delays.Delay_Milliseconds (10);
+      end loop;
       Screen.Update;
       Delays.Delay_Seconds (1);
    end loop;

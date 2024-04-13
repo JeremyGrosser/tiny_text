@@ -42,4 +42,11 @@ package body Board is
       end if;
    end OLED_Write;
 
+   procedure Set_Pixel
+      (X, Y : Natural)
+   is
+   begin
+      Screen.Set_Pixel (X, Y, True);
+   end Set_Pixel;
+
 end Board;
