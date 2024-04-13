@@ -11,6 +11,7 @@ begin
 
    loop
       Screen.Clear;
+      Text.Clear;
       for Ch in Text.Printable'Range loop
          Text.Put (Ch);
          Delays.Delay_Milliseconds (10);
