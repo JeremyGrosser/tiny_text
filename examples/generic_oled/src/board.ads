@@ -24,8 +24,9 @@ package Board is
       (X, Y : Natural);
 
    package Text is new Generic_Tiny_Text
-      (Set_Pixel  => Set_Pixel,
-       Width      => Screen.Width,
-       Height     => Screen.Height);
+      (Set_Pixel     => Set_Pixel,
+       Clear_Screen  => Screen.Clear,
+       Width         => Screen.Width,
+       Height        => Screen.Height);
 
 end Board;

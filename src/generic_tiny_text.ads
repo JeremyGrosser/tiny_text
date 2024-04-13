@@ -6,6 +6,7 @@
 generic
    Width, Height : Positive;
    with procedure Set_Pixel (X, Y : Natural);
+   with procedure Clear_Screen;
 package Generic_Tiny_Text
    with Pure
 is
@@ -24,8 +25,7 @@ is
    Cursor : Point := (0, 0);
 
    procedure Clear;
-   --  Resets Cursor to (0, 0).
-   --  Remember to clear the framebuffer if your Set_Pixel procedure uses one.
+   --  Resets Cursor to (0, 0) and calls Clear_Screen.
 
    procedure Put
       (Ch : Character);

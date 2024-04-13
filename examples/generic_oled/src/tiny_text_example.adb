@@ -10,7 +10,6 @@ begin
    Initialize;
 
    loop
-      Screen.Clear;
       Text.Clear;
       for Ch in Text.Printable'Range loop
          Text.Put (Ch);

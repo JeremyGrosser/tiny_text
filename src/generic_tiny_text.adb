@@ -135,6 +135,7 @@ package body Generic_Tiny_Text is
    procedure Clear is
    begin
       Cursor := (0, 0);
+      Clear_Screen;
    end Clear;
 
    procedure Advance is

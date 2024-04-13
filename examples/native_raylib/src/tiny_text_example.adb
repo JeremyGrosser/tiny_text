@@ -25,10 +25,16 @@ procedure Tiny_Text_Example is
       Raylib.DrawPixel (int (X), int (Y), Foreground);
    end Set_Pixel;
 
+   procedure Clear_Screen is
+   begin
+      Raylib.ClearBackground (Background);
+   end Clear_Screen;
+
    package Text is new Generic_Tiny_Text
-      (Set_Pixel  => Set_Pixel,
-       Width      => Width,
-       Height     => Height);
+      (Set_Pixel     => Set_Pixel,
+       Clear_Screen  => Clear_Screen,
+       Width         => Width,
+       Height        => Height);
 begin
    Raylib.InitWindow (Width, Height, New_String ("tiny_text_example"));
    Raylib.SetTargetFPS (60);
@@ -37,7 +43,6 @@ begin
       exit when Raylib.IsKeyDown (int (Raylib.KEY_ESCAPE));
 
       Raylib.BeginDrawing;
-      Raylib.ClearBackground (Background);
 
       Text.Clear;
       for Ch in Text.Printable'Range loop

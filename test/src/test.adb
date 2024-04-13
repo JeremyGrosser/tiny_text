@@ -105,18 +105,17 @@ procedure Test is
          Bitmap.Set_Pixel (HAL.Bitmap.Point'(X, Y));
       end Set_Pixel;
       package Text is new Generic_Tiny_Text
-         (Width     => Width,
-          Height    => Height,
-          Set_Pixel => Set_Pixel);
+         (Width         => Width,
+          Height        => Height,
+          Set_Pixel     => Set_Pixel,
+          Clear_Screen  => Clear_Bitmap);
    begin
-      Clear_Bitmap;
+      Text.Clear;
       for Ch in Character'Range loop
          Text.Put (Ch);
       end loop;
 
       Text.Clear;
-      Clear_Bitmap;
-
       Text.Put_Line ("hello, tiny!");
       Text.Scale := 2;
       Text.Put ("hello, big!");
