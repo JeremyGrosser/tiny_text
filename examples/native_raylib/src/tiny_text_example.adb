@@ -44,6 +44,8 @@ begin
       for Ch in Text.Printable'Range loop
          Text.Put (Ch);
       end loop;
+      Text.New_Line;
+      Text.Put ("ESC to exit");
 
       Raylib.EndDrawing;
    end loop;
