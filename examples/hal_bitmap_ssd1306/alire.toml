@@ -15,7 +15,7 @@ executables = ["tiny_text_example"]
 adl_middleware = "~0.2.0"
 embedded_components = "~0.2.0"
 pico_bsp = "^2.0.0"
-tiny_text = "^1.3.0"
+tiny_text = "^1.4.0"
 
 [[pins]]
 tiny_text = { path='../..' }

@@ -12,12 +12,9 @@ tags = []
 executables = ["test"]
 
 [[depends-on]]
-tiny_text = "^1.0.0"
+tiny_text = "^1.4.0"
 qoi = "~0.1.0"
 adl_middleware = "~0.2.0"
 
 [[pins]]
 tiny_text = { path='..' }
-
-[build-switches]
-release.optimization = ["-gnatn2", "-gnatp", "-Os", "-march=native"]
