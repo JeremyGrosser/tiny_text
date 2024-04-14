@@ -26,6 +26,7 @@ package body Board is
       SDA.Configure (Output, Pull_Up, RP.GPIO.I2C, Schmitt => True);
       SCL.Configure (Output, Pull_Up, RP.GPIO.I2C, Schmitt => True);
       RST.Configure (Output, Pull_Up);
+      Ready := True;
       Screen.Initialize;
       Text.Clear;
    end Initialize;
@@ -38,7 +39,7 @@ package body Board is
    begin
       OLED_Port.Master_Transmit (OLED_Addr, I2C_Data (Data), Status, Timeout => 100);
       if Status /= Ok then
-         raise Program_Error;
+         Ready := False;
       end if;
    end OLED_Write;
 

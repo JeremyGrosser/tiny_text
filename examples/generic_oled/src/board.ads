@@ -12,6 +12,11 @@ package Board is
 
    Delays : RP.Timer.Interrupts.Delays;
 
+   Ready : Boolean := False;
+   --  Ready = True after Initialize succeeds.
+   --  Ready = False after any I2C error.
+   --  Call Initialize if Ready = False.
+
    procedure Initialize;
 
    procedure OLED_Write

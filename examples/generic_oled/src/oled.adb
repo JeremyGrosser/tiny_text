@@ -3,8 +3,6 @@
 --
 --  SPDX-License-Identifier: MIT
 --
-pragma Extensions_Allowed (On);
-
 package body OLED is
 
    subtype Framebuffer is UInt8_Array (0 .. Width * Height / 8 - 1);
@@ -32,7 +30,7 @@ package body OLED is
       Write (Buffer);
    end Write_Data;
 
-   Init : constant UInt8_Array := [
+   Init : constant UInt8_Array := (
       16#AE#,           --  Display off
       16#D5#, 16#80#,   --  Display clock divide ratio
       16#A8#, 16#27#,   --  mux ratio
@@ -58,7 +56,7 @@ package body OLED is
 
       --  16#1F#,           --  column address
       16#AF#            --  Display on
-   ];
+   );
 
    procedure Initialize is
    begin
@@ -97,6 +95,6 @@ package body OLED is
 
    procedure Clear is
    begin
-      FB := [others => 0];
+      FB := (others => 0);
    end Clear;
 end OLED;

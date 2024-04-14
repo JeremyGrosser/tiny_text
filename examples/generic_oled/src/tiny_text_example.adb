@@ -7,15 +7,15 @@ with Board; use Board;
 
 procedure Tiny_Text_Example is
 begin
-   Initialize;
-
    loop
-      Text.Clear;
+      if not Ready then
+         Initialize;
+      end if;
+
       for Ch in Text.Printable'Range loop
          Text.Put (Ch);
          Delays.Delay_Milliseconds (10);
+         Screen.Update;
       end loop;
-      Screen.Update;
-      Delays.Delay_Seconds (1);
    end loop;
 end Tiny_Text_Example;
