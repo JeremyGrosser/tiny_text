@@ -1,6 +1,6 @@
 name = "tiny_text"
 description = "Low resolution bitmap font with a small memory footprint"
-version = "1.4.0"
+version = "1.5.0"
 
 authors = ["Jeremy Grosser"]
 maintainers = ["Jeremy Grosser <jeremy@synack.me>"]
@@ -10,4 +10,4 @@ website = ["https://github.com/JeremyGrosser/tiny_text"]
 tags = ["font", "hal", "bitmap", "text"]
 
 [[depends-on]]
-hal = "~0.3.0"
+hal = "^1"
