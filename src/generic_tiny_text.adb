@@ -1,8 +1,9 @@
 --
---  Copyright (C) 2024 Jeremy Grosser <jeremy@synack.me>
+--  Copyright (C) 2024-2025 Jeremy Grosser <jeremy@synack.me>
 --
 --  SPDX-License-Identifier: MIT
 --
+pragma Style_Checks ("M120");
 with Interfaces; use Interfaces;
 
 package body Generic_Tiny_Text is
