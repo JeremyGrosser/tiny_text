@@ -10,8 +10,7 @@ package body Generic_Tiny_Text is
    Font_Height : constant := 6;
 
    type Font_Character is mod 2 ** 18 with Size => 18;
-   type Font_Array is array (Character) of Font_Character
-      with Pack;
+   type Font_Array is array (Character) of Font_Character;
    Font_Data : constant Font_Array := (
       ' ' => 2#000_000_000_000_000_000#,
       '!' => 2#010_010_010_000_010_000#,
