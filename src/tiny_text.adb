@@ -57,8 +57,8 @@ package body Tiny_Text is
       FC : constant Unsigned_32 := Unsigned_32 (Font_Data (Char));
       Pixel : Unsigned_32;
    begin
-      for X in 0 .. (Font_Width - 1) loop
-         for Y in 0 .. (Font_Height - 1) loop
+      for X in 0 .. Font_Width - 1 loop
+         for Y in 0 .. Font_Height - 1 loop
             P.X := (Location.X + (Font_Width - X)) * This.Scale;
             P.Y := (Location.Y + Y) * This.Scale;
             Pixel := Shift_Right
