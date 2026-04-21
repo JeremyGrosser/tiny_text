@@ -20,7 +20,8 @@ is
 
    procedure Put
       (Pos : Point;
-       Ch  : Character);
+       Ch  : Character)
+   with No_Inline;
 
    Cursor : Point := (0, 0);
 
