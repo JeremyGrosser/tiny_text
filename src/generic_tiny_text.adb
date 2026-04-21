@@ -117,12 +117,12 @@ package body Generic_Tiny_Text is
       FC : constant Unsigned_32 := Unsigned_32 (Font_Data (Ch));
       S : constant Natural := Scale - 1;
    begin
-      for X in 0 .. Font_Width - 1 loop
+      for W in 1 .. Font_Width loop
          for Y in 0 .. Font_Height - 1 loop
-            if (Shift_Right (FC, (Font_Width * Font_Height) - (Y * 3) + X) and 1) = 1 then
+            if (Shift_Right (FC, Font_Width * (Font_Height + 1) - (Y * Font_Width) - W) and 1) = 1 then
                for SX in 0 .. S loop
                   for SY in 0 .. S loop
-                     Set_Pixel ((Pos.X + (Font_Width - X)) * Scale + SX,
+                     Set_Pixel ((Pos.X + W) * Scale + SX,
                                 (Pos.Y + Y) * Scale + SY);
                   end loop;
                end loop;

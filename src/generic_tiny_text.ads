@@ -5,13 +5,12 @@
 --
 generic
    Width, Height : Positive;
+   Scale : Positive := 1;
    with procedure Set_Pixel (X, Y : Natural);
    with procedure Clear_Screen;
 package Generic_Tiny_Text
    with Pure
 is
-   Scale : Positive := 1;
-
    type Point is record
       X, Y : Natural := 0;
    end record;
