@@ -10,8 +10,8 @@ with Raylib;
 with Generic_Tiny_Text;
 
 procedure Tiny_Text_Example is
-   Width  : constant := 320;
-   Height : constant := 320;
+   Width  : constant := 800;
+   Height : constant := 600;
 
    Foreground : constant Raylib.Color :=
       (255, 255, 255, 255);
@@ -34,11 +34,11 @@ procedure Tiny_Text_Example is
       (Set_Pixel     => Set_Pixel,
        Clear_Screen  => Clear_Screen,
        Width         => Width,
-       Height        => Height);
+       Height        => Height,
+       Scale         => 6);
 begin
    Raylib.InitWindow (Width, Height, New_String ("tiny_text_example"));
    Raylib.SetTargetFPS (60);
-   Text.Scale := 4;
    while not Raylib.WindowShouldClose loop
       exit when Raylib.IsKeyDown (int (Raylib.KEY_ESCAPE));
 
